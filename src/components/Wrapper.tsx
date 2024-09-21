@@ -11,6 +11,9 @@ import TextField from "@mui/material/TextField";
 type Props = {};
 
 function Wrapper({}: Props) {
+	const onSubmit = (e: FormData) => {
+		console.log(`[LOG] 🟡  	e.get("email") :`, e.get("email"));
+	};
 	return (
 		<Container
 			className="min-h-screen flex items-center justify-center"
@@ -24,7 +27,7 @@ function Wrapper({}: Props) {
 					padding: "2rem",
 				}}
 			>
-				<form>
+				<form action={onSubmit}>
 					<Stack
 						spacing={2}
 						direction="column"
@@ -35,12 +38,28 @@ function Wrapper({}: Props) {
 						</Typography>
 
 						<TextField
-							id="outlined-basic"
-							label="Outlined"
+							id="email"
+							name="email"
+							label="Email"
 							variant="outlined"
+							type="email"
+							required
+						/>
+						<TextField
+							id="password"
+							name="password"
+							label="Password"
+							variant="outlined"
+							type="password"
+							required
 						/>
 
-						<Button variant="contained">Sign in</Button>
+						<Button size="large" variant="contained" type="submit">
+							Sign in
+						</Button>
+						<Button size="large" variant="text">
+							Sign up
+						</Button>
 					</Stack>
 				</form>
 			</Card>
