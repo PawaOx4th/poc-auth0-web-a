@@ -1,18 +1,21 @@
 "use client";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import React from "react";
-import Typography from "@mui/material/Typography";
-import Input from "@mui/material/Input";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useRouter } from "next/navigation";
+import React from "react";
 
-type Props = {};
-
-function Wrapper({}: Props) {
+function Wrapper() {
 	const onSubmit = (e: FormData) => {
-		console.log(`[LOG] 🟡  	e.get("email") :`, e.get("email"));
+		// console.log(`[LOG] 🟡  	e.get("email") :`, e.get("email"));
+	};
+
+	const router = useRouter();
+	const handleLogin = () => {
+		router.push("/api/auth/login");
 	};
 	return (
 		<Container
@@ -57,7 +60,7 @@ function Wrapper({}: Props) {
 						<Button size="large" variant="contained" type="submit">
 							Sign in
 						</Button>
-						<Button size="large" variant="text">
+						<Button size="large" variant="text" onClick={() => handleLogin()}>
 							Sign up
 						</Button>
 					</Stack>

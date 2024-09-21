@@ -4,6 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const montserrat = Montserrat({
 	weight: ["100", "300", "400", "500", "600", "700", "800", "900"],
@@ -24,10 +25,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${montserrat.variable} antialiased`}>
-				<AppRouterCacheProvider options={{ key: "css" }}>
-					<ThemeProvider theme={theme}>{children}</ThemeProvider>
-				</AppRouterCacheProvider>
+			<body
+				className={`${montserrat.variable} antialiased`}
+				suppressHydrationWarning
+			>
+				<UserProvider>
+					<AppRouterCacheProvider options={{ key: "css" }}>
+						<ThemeProvider theme={theme}>{children}</ThemeProvider>
+					</AppRouterCacheProvider>
+				</UserProvider>
 			</body>
 		</html>
 	);
