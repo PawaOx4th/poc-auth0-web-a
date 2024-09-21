@@ -1,9 +1,9 @@
 import { cookieManager } from "@/helper/manage-cookie";
 import * as jose from "jose";
 
-export async function validateKey() {
+export async function validateKey(tokenArg?: string) {
 	try {
-		const token = cookieManager().get("token");
+		const token = tokenArg ?? cookieManager().get("token");
 		if (!token) {
 			throw new Error("Token not found");
 		}

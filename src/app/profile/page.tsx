@@ -2,6 +2,7 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import { toast } from "sonner";
 
 import { validateKey } from "@/helper/validate-token";
 import Button from "@mui/material/Button";
@@ -31,7 +32,13 @@ export default function ProfileServer() {
 					variant="contained"
 					onClick={async () => {
 						const response = await validateKey();
-						console.log(response);
+
+						if (response.success) {
+							toast.success("Token is valid", { richColors: true });
+						} else {
+							console.error(response);
+							toast.error("Token is invalid", { richColors: true });
+						}
 					}}
 				>
 					Validate

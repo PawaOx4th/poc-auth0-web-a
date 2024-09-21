@@ -14,19 +14,17 @@ export default withMiddlewareAuthRequired(async function middleware(req) {
 		const user = await getSession(req, res);
 		const userAccessTokenData = await getAccessToken(req, res);
 
-		if (!userAccessTokenData || !user) {
+		if (!userAccessTokenData.accessToken || !user) {
 			return NextResponse.redirect("/api/auth/login");
 		}
 
-		if (!cookieManager().has("token")) {
-			const data = {
-				name: "token",
-				value: userAccessTokenData.accessToken as string,
-				// expires: user.accessTokenExpiresAt,
-				// maxAge: 180,
-			};
-			res.cookies.set(data);
-		}
+		const data = {
+			name: "token",
+			value: userAccessTokenData.accessToken as string,
+			// expires: user.accessTokenExpiresAt,
+			// maxAge: 180,
+		};
+		res.cookies.set(data);
 
 		return res;
 	} catch (error) {

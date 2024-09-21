@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { Toaster } from "sonner";
 
 const montserrat = Montserrat({
 	weight: ["100", "300", "400", "500", "600", "700", "800", "900"],
@@ -29,6 +30,7 @@ export default function RootLayout({
 				className={`${montserrat.variable} antialiased`}
 				suppressHydrationWarning
 			>
+				<Toaster />
 				<UserProvider>
 					<AppRouterCacheProvider options={{ key: "css" }}>
 						<ThemeProvider theme={theme}>{children}</ThemeProvider>
