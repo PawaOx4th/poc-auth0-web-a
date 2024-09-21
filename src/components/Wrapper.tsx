@@ -7,9 +7,6 @@ function Wrapper() {
 		<Container
 			className="min-h-screen flex items-center justify-center"
 			maxWidth={false}
-			sx={(theme) => ({
-				backgroundColor: theme.palette.primary["100"],
-			})}
 		>
 			<AuthenticationForm />
 		</Container>
