@@ -1,7 +1,7 @@
 import { cookieManager } from "@/helper/manage-cookie";
 import { handleAuth, handleLogin, handleLogout } from "@auth0/nextjs-auth0";
 
-const AUDIENCE = "https://kpc-poc.au.auth0.com/api/v2/";
+const AUDIENCE = process.env.NEXT_PUBLIC_AUTH0_AUDIENCE;
 
 export const GET = handleAuth({
 	signUp: handleLogin(() => {
