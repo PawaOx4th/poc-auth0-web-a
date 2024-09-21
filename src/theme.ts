@@ -20,6 +20,9 @@ const theme = createTheme({
 			"900": "#3d3d3d",
 		},
 	},
+	shape: {
+		borderRadius: 8,
+	},
 });
 
 export default theme;

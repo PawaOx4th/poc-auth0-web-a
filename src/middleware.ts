@@ -1,4 +1,5 @@
 // middleware.js
+import { cookieManager } from "@/helper/manage-cookie";
 import {
 	withMiddlewareAuthRequired,
 	getSession,
@@ -17,14 +18,15 @@ export default withMiddlewareAuthRequired(async function middleware(req) {
 			return NextResponse.redirect("/api/auth/login");
 		}
 
-		const data = {
-			name: "token",
-			value: userAccessTokenData.accessToken as string,
-			expires: user.accessTokenExpiresAt,
-			maxAge: 180,
-		};
-
-		res.cookies.set(data);
+		if (!cookieManager().has("token")) {
+			const data = {
+				name: "token",
+				value: userAccessTokenData.accessToken as string,
+				// expires: user.accessTokenExpiresAt,
+				// maxAge: 180,
+			};
+			res.cookies.set(data);
+		}
 
 		return res;
 	} catch (error) {

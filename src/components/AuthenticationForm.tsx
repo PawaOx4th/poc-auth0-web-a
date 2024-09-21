@@ -8,10 +8,10 @@ import React from "react";
 const AuthenticationForm = () => {
 	const router = useRouter();
 	const handleLogin = () => {
-		router.push("/api/auth/login");
+		router.replace("/api/auth/login");
 	};
 	const handleSignUp = () => {
-		router.push("/api/auth/signUp");
+		router.replace("/api/auth/signUp");
 	};
 	return (
 		<Card
