@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-// import { getSession } from "@auth0/nextjs-auth0";
 import Paper from "@mui/material/Paper";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Container from "@mui/material/Container";

@@ -2,24 +2,36 @@
 import {
 	withMiddlewareAuthRequired,
 	getSession,
+	getAccessToken,
+	AccessTokenError,
 } from "@auth0/nextjs-auth0/edge";
 import { NextResponse } from "next/server";
 
 export default withMiddlewareAuthRequired(async function middleware(req) {
-	const res = NextResponse.next();
+	try {
+		const res = NextResponse.next();
+		const user = await getSession(req, res);
+		const userAccessTokenData = await getAccessToken(req, res);
 
-	const user = await getSession(req, res);
+		if (!userAccessTokenData || !user) {
+			return NextResponse.redirect("/api/auth/login");
+		}
 
-	if (!user) return NextResponse.redirect("/api/auth/login");
+		const data = {
+			name: "token",
+			value: userAccessTokenData.accessToken as string,
+			expires: user.accessTokenExpiresAt,
+			maxAge: 180,
+		};
 
-	const data = {
-		name: "token",
-		value: user.accessToken as string,
-		expires: user.accessTokenExpiresAt,
-		maxAge: user.accessTokenExpiresAt,
-	};
-	res.cookies.set(data);
-	return res;
+		res.cookies.set(data);
+
+		return res;
+	} catch (error) {
+		if (error instanceof AccessTokenError) {
+			return NextResponse.redirect(new URL("/api/auth/login", req.url));
+		}
+	}
 });
 
 export const config = {
