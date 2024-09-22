@@ -1,3 +1,3 @@
 export const appConfig = {
-	redirectUrl: "https://poc-auth0.pawaox4th.com/",
+	redirectUrl: process.env.NEXT_PUBLIC_REDIRECT_URI,
 } as const;

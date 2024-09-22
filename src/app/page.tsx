@@ -9,9 +9,6 @@ export default function Home() {
 				<Typography variant="h4" display={"block"} fontWeight={600}>
 					Welcome
 				</Typography>
-				<Link href="/signIn" underline={"none"} color={"textPrimary"}>
-					Go to Sign In
-				</Link>
 				<Link href="/profile" underline={"none"} color={"textPrimary"}>
 					Go to my profile
 				</Link>
