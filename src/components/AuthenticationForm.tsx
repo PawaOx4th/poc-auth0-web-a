@@ -1,3 +1,4 @@
+import { appConfig } from "@/constants/app-config";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
@@ -7,9 +8,18 @@ import React from "react";
 
 const AuthenticationForm = () => {
 	const router = useRouter();
-	const handleLogin = () => {
+
+	// NOTE: Go to login.
+	const handleLoginProfilePage = () => {
 		router.replace("/api/auth/login");
 	};
+
+	// NOTE: Go to web [B].
+	const handleLoginAboutPage = () => {
+		router.push(`/api/auth/loginAboutPage?to=${appConfig.redirectUrl}`);
+	};
+
+	// NOTE: Go to sign up page.
 	const handleSignUp = () => {
 		router.replace("/api/auth/signUp");
 	};
@@ -28,8 +38,19 @@ const AuthenticationForm = () => {
 					Welcome
 				</Typography>
 
-				<Button size="large" variant="outlined" onClick={() => handleLogin()}>
-					Sign in
+				<Button
+					size="large"
+					variant="outlined"
+					onClick={() => handleLoginProfilePage()}
+				>
+					Sign in (go to profile page)
+				</Button>
+				<Button
+					size="large"
+					variant="outlined"
+					onClick={() => handleLoginAboutPage()}
+				>
+					Go to web B
 				</Button>
 				<Button size="large" variant="contained" onClick={() => handleSignUp()}>
 					Sign up

@@ -6,11 +6,8 @@ import { toast } from "sonner";
 
 import { validateKey } from "@/helper/validate-token";
 import Button from "@mui/material/Button";
-import { useRouter } from "next/navigation";
 
-export default function ProfilePage() {
-	const router = useRouter();
-
+export default function AboutPage() {
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading...</div>;
@@ -18,16 +15,9 @@ export default function ProfilePage() {
 
 	return (
 		user && (
-			<Container
-				sx={{
-					padding: "2rem",
-					display: "flex",
-					flexDirection: "column",
-					gap: "1rem",
-				}}
-			>
-				<h1>Profile Page</h1>
-				<img src={user.picture!} alt={user.name!} className="size-44" />
+			<Container>
+				<h1>About Page</h1>
+				{/* <img src={user.picture} alt={user.name} /> */}
 				<h2>{user.name}</h2>
 				<hr />
 				<Paper>
@@ -35,32 +25,12 @@ export default function ProfilePage() {
 						<code>{JSON.stringify(user, null, 2)}</code>
 					</pre>
 				</Paper>
+				<hr />
+				<a href="/api/auth/logout">Logout</a>
 
+				<hr />
 				<Button
 					variant="contained"
-					color="primary"
-					size="large"
-					onClick={() => {
-						router.push("/");
-					}}
-				>
-					Home
-				</Button>
-				<Button
-					variant="contained"
-					color="error"
-					size="large"
-					onClick={() => {
-						router.push("/api/auth/logout");
-					}}
-				>
-					Logout
-				</Button>
-
-				<Button
-					variant="contained"
-					color="info"
-					size="large"
 					onClick={async () => {
 						const response = await validateKey();
 
