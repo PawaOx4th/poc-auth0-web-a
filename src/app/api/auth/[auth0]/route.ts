@@ -37,9 +37,10 @@ export const GET = handleAuth({
 			},
 		};
 	}),
-	logout: handleLogout(() => {
-		// NOTE: Clear all cookies
-		cookieManager().clear();
-		return { returnTo: "/" };
-	}),
+	logout: handleLogout,
+	// logout: handleLogout(() => {
+	// 	// NOTE: Clear all cookies
+	// 	cookieManager().clear();
+	// 	return { returnTo: "/" };
+	// }),
 });

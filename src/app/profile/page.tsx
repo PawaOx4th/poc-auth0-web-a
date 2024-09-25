@@ -46,16 +46,12 @@ export default function ProfilePage() {
 				>
 					Home
 				</Button>
-				<Button
-					variant="contained"
-					color="error"
-					size="large"
-					onClick={() => {
-						router.push("/api/auth/logout");
-					}}
-				>
-					Logout
-				</Button>
+
+				<a href="/api/auth/logout" className="w-full">
+					<Button variant="contained" color="error" size="large" className="w-full">
+						Logout
+					</Button>
+				</a>
 
 				<Button
 					variant="contained"

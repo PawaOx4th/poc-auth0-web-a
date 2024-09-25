@@ -49,15 +49,16 @@ function Navbar() {
 					</li>
 					{user ? (
 						<li>
+							<a href="/api/auth/logout" className="w-[300px]">
 							<Button
-								color="warning"
 								variant="contained"
-								onClick={() => {
-									router.push("/api/auth/logout");
-								}}
+								color="error"
+								size="large"
+								className="w-full"
 							>
-								Go to Logout
+								Logout
 							</Button>
+						</a>
 						</li>
 					) : (
 						<></>
@@ -66,20 +67,21 @@ function Navbar() {
 
 				<div className="flex-1 flex items-center gap-4 justify-end">
 					{user ? (
-						<>
+						<div>
 							<Typography>{user?.email}</Typography>
 							<Avatar src={user?.picture!} />
-						</>
+						</div>
 					) : (
-						<Button
-							color="warning"
-							variant="outlined"
-							onClick={() => {
-								handleGotoLogin();
-							}}
-						>
-							Go to Login
-						</Button>
+						<a href="/api/auth/login" className="w-[300px]">
+							<Button
+								variant="contained"
+								color="success"
+								size="large"
+								className="w-full"
+							>
+								Login
+							</Button>
+						</a>
 					)}
 				</div>
 			</Container>
