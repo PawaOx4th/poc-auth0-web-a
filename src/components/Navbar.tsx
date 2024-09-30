@@ -40,7 +40,7 @@ function Navbar() {
 								Go to web:
 							</Typography>
 							<Chip
-								label="[B]/profile"
+								label={`${process.env.NEXT_PUBLIC_GO_TO_MESSAGE_WEB}/profile`}
 								variant="filled"
 								color="primary"
 								size="small"
